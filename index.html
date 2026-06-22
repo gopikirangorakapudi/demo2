@@ -1,1 +1,752 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sri Saradha – iPhone 17 Pro Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100vh;font-family:'Inter',sans-serif;background:#ccc8c2;display:flex;align-items:center;justify-content:center;padding:40px 20px;}
+
+/* ─── OUTER PAGE ─── */
+.page-wrap{display:flex;flex-direction:column;align-items:center;gap:24px;}
+.page-label{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:#7a7570;letter-spacing:.06em;text-transform:uppercase;}
+
+/* ─── PHONE FRAME ─── */
+.phone{
+  position:relative;width:320px;height:650px;
+  background:linear-gradient(145deg,#c8714a 0%,#d4835e 30%,#b85e38 60%,#a04e2c 100%);
+  border-radius:50px;
+  box-shadow:0 50px 100px rgba(0,0,0,0.45),0 10px 28px rgba(0,0,0,0.28),inset 0 1px 0 rgba(255,255,255,0.22),inset 0 -1px 0 rgba(0,0,0,0.3);
+  padding:7px;
+}
+/* left buttons */
+.phone::before{content:'';position:absolute;left:-5px;top:128px;width:5px;height:38px;border-radius:3px 0 0 3px;background:linear-gradient(90deg,#8e4020,#b86040);box-shadow:-2px 0 8px rgba(0,0,0,0.35);}
+.phone::after{content:'';position:absolute;left:-5px;top:180px;width:5px;height:38px;border-radius:3px 0 0 3px;background:linear-gradient(90deg,#8e4020,#b86040);box-shadow:-2px 0 8px rgba(0,0,0,0.35);}
+.phone-right{position:absolute;right:-5px;top:148px;width:5px;height:70px;border-radius:0 3px 3px 0;background:linear-gradient(90deg,#c8714a,#9a4a22);box-shadow:2px 0 8px rgba(0,0,0,0.35);}
+
+/* ─── SCREEN ─── */
+.screen{
+  width:100%;height:100%;
+  background:#07080f;
+  border-radius:44px;
+  overflow:hidden;
+  position:relative;
+  display:flex;flex-direction:column;
+}
+
+/* ─── STATUS BAR ─── */
+.status-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 22px 5px;
+  background:#07080f;
+  font-size:12px;font-weight:600;color:#eef0f7;
+  flex-shrink:0;position:relative;z-index:30;
+}
+.dynamic-island{
+  position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  width:90px;height:24px;background:#000;border-radius:20px;z-index:40;
+}
+.sb-right{display:flex;align-items:center;gap:5px;}
+
+/* ─── APP HEADER ─── */
+.app-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 16px 8px;
+  background:#0e1018;border-bottom:1px solid rgba(255,255,255,.07);
+  flex-shrink:0;z-index:20;
+}
+.ahl{display:flex;align-items:center;gap:9px;}
+.logo-badge{
+  width:32px;height:32px;border-radius:9px;
+  background:linear-gradient(135deg,#5b6ef5,#7c5ce8);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#fff;
+}
+.school-name{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:#eef0f7;line-height:1.2;}
+.school-sub{font-size:9px;color:#8c93b0;}
+.ahr{display:flex;gap:7px;}
+.icon-btn{
+  width:30px;height:30px;border-radius:8px;
+  background:#141720;border:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:13px;position:relative;
+  transition:background .15s;
+}
+.icon-btn:active{background:#1a1e2a;}
+.red-pip{position:absolute;top:4px;right:4px;width:6px;height:6px;border-radius:50%;background:#f0504b;border:1.5px solid #0e1018;}
+
+/* ─── SCROLL AREA ─── */
+.scroll-area{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  padding:12px 13px 74px;
+  background:#07080f;
+}
+.scroll-area::-webkit-scrollbar{display:none;}
+
+/* ─── PAGES ─── */
+.page{display:none;animation:fadeUp .28s ease forwards;}
+.page.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── BOTTOM NAV ─── */
+.bottom-nav{
+  position:absolute;left:0;right:0;bottom:0;
+  height:64px;
+  background:#0e1018;border-top:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;
+  padding-bottom:4px;z-index:20;
+}
+.bni{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
+  cursor:pointer;padding:6px 0;
+  background:none;border:none;color:#4f5570;
+  font-family:'Inter',sans-serif;position:relative;
+  transition:all .18s;
+}
+.bni-ico{font-size:18px;transition:transform .18s;}
+.bni-lbl{font-size:9px;}
+.bni.active .bni-ico{color:#5b6ef5;transform:translateY(-2px);}
+.bni.active .bni-lbl{color:#5b6ef5;font-weight:600;}
+.bni-badge{
+  position:absolute;top:2px;right:calc(50% - 14px);
+  background:#f0504b;border-radius:5px;padding:1px 4px;
+  font-size:8px;font-weight:700;color:#fff;border:1.5px solid #0e1018;
+}
+
+/* ─── MORE OVERLAY ─── */
+.more-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:50;display:none;border-radius:44px;}
+.more-drawer{
+  position:absolute;left:0;right:0;bottom:0;
+  background:#0e1018;border-top:1px solid rgba(255,255,255,.1);
+  border-radius:22px 22px 44px 44px;
+  z-index:60;padding:12px 14px 70px;
+  transform:translateY(100%);transition:transform .28s cubic-bezier(.3,0,.2,1);
+}
+.more-drawer.open{transform:translateY(0);}
+.more-handle{width:32px;height:3px;border-radius:2px;background:rgba(255,255,255,.15);margin:0 auto 14px;}
+.more-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+.more-item{
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  padding:11px 4px;border-radius:13px;
+  background:#141720;border:1px solid rgba(255,255,255,.07);
+  cursor:pointer;transition:background .15s;
+}
+.more-item:active{background:#1a1e2a;}
+.more-item-ico{font-size:19px;}
+.more-item-lbl{font-size:9px;color:#8c93b0;font-weight:500;text-align:center;}
+
+/* ─── CARDS ─── */
+.card{background:#141720;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:13px;margin-bottom:11px;}
+.card-sm{background:#141720;border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:11px 13px;margin-bottom:9px;}
+.sec-head{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;color:#eef0f7;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+.sec-head span{font-family:'Inter',sans-serif;font-size:9px;color:#8c93b0;font-weight:400;}
+
+/* ─── WELCOME ─── */
+.welcome-card{
+  border-radius:16px;padding:14px 15px;
+  background:rgba(91,110,245,.18);border:1px solid rgba(91,110,245,.28);
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;
+}
+.wname{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#eef0f7;}
+.wsub{font-size:10px;color:#8c93b0;margin-top:3px;}
+.av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#5b6ef5,#e85ca0);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;}
+
+/* ─── STAT GRID ─── */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:11px;}
+.stat-tile{padding:11px 12px 10px;border-radius:14px;border:1px solid;}
+.sv{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;line-height:1;margin-bottom:3px;}
+.sl{font-size:10px;color:#8c93b0;font-weight:500;}
+.sd{font-size:9px;color:#4f5570;margin-top:1px;}
+
+/* ─── ROW ITEMS ─── */
+.ri{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.ri:last-child{border-bottom:none;padding-bottom:0;}
+.ri-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.ri-t{font-size:12px;font-weight:600;color:#eef0f7;}
+.ri-s{font-size:10px;color:#8c93b0;margin-top:1px;}
+.rbadge{padding:2px 7px;border-radius:5px;font-size:9px;font-weight:600;margin-left:auto;flex-shrink:0;}
+
+/* ─── PROGRESS ─── */
+.prog{background:rgba(255,255,255,.06);border-radius:5px;height:6px;overflow:hidden;}
+.prog-f{height:100%;border-radius:5px;transition:width 1s ease;}
+
+/* ─── BUTTONS ─── */
+.btn-p{background:linear-gradient(135deg,#5b6ef5,#7c5ce8);border:none;color:#fff;padding:10px 14px;border-radius:11px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;transition:transform .15s;white-space:nowrap;}
+.btn-p:active{transform:scale(.96);}
+.btn-s{background:#141720;border:1px solid rgba(255,255,255,.12);color:#eef0f7;padding:9px 12px;border-radius:11px;cursor:pointer;font-family:'Inter',sans-serif;font-size:11px;font-weight:500;transition:background .15s;}
+.btn-s:active{background:#1a1e2a;}
+
+/* ─── TABS ─── */
+.tabs{display:flex;gap:6px;margin-bottom:11px;overflow-x:auto;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab-btn{padding:6px 13px;border-radius:8px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:11px;font-weight:500;white-space:nowrap;transition:all .2s;background:#1a1e2a;color:#8c93b0;}
+.tab-btn.active{background:linear-gradient(135deg,#5b6ef5,#7c5ce8);color:#fff;font-weight:600;}
+
+/* ─── PROFILE ─── */
+.profile-hero{border-radius:16px;padding:18px;background:rgba(91,110,245,.12);border:1px solid rgba(91,110,245,.2);text-align:center;margin-bottom:11px;}
+.pav-lg{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,#5b6ef5,#e85ca0);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:#fff;margin:0 auto 10px;border:2px solid rgba(91,110,245,.3);}
+.pname{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;color:#eef0f7;}
+.psub{font-size:11px;color:#8c93b0;margin-top:3px;}
+.ptags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:10px;}
+.ptag{padding:3px 8px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:9px;color:#8c93b0;}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.dtile{padding:11px 12px;background:#141720;border:1px solid rgba(255,255,255,.07);border-radius:12px;}
+.dlbl{font-size:9px;color:#4f5570;margin-bottom:3px;}
+.dval{font-size:12px;font-weight:500;color:#eef0f7;}
+
+/* ─── ID CARD ─── */
+.id-card{max-width:240px;margin:0 auto;padding:18px;border-radius:18px;background:linear-gradient(135deg,rgba(91,110,245,.28),rgba(124,92,232,.15));border:1px solid rgba(91,110,245,.35);box-shadow:0 10px 30px rgba(91,110,245,.18);}
+.qr-grid{display:grid;grid-template-columns:repeat(9,7px);gap:2px;padding:10px;background:#fff;border-radius:8px;margin:12px auto;width:fit-content;}
+.qr-cell{width:7px;height:7px;border-radius:1px;}
+
+/* ─── ATTENDANCE ─── */
+.att-grid{display:flex;flex-wrap:wrap;gap:6px;}
+.att-day{width:38px;height:42px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;}
+
+/* ─── TIMETABLE ─── */
+.tt-wrap{overflow-x:auto;}
+.tt-wrap::-webkit-scrollbar{display:none;}
+.tt-table{border-collapse:collapse;min-width:500px;width:100%;}
+.tt-table th{padding:7px 5px;font-size:9px;color:#8c93b0;font-weight:600;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);}
+.tt-table th:first-child{text-align:left;}
+.tt-table td{padding:5px 3px;text-align:center;border-bottom:1px solid rgba(255,255,255,.03);}
+.tt-table td:first-child{text-align:left;font-size:10px;font-weight:600;color:#8c93b0;}
+.tt-pill{padding:4px 5px;border-radius:6px;font-size:8px;font-weight:600;display:inline-block;}
+
+/* ─── FEE ALERT ─── */
+.fee-alert{padding:13px 15px;border-radius:14px;margin-bottom:11px;background:rgba(240,80,75,.08);border:1px solid rgba(240,80,75,.22);display:flex;justify-content:space-between;align-items:center;}
+
+/* ─── NOTICES ─── */
+.notice-item{display:flex;gap:10px;padding:12px;border-radius:14px;margin-bottom:9px;border-left:3px solid;}
+
+/* ─── CHAT ─── */
+.teacher-list{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;margin-bottom:11px;}
+.teacher-list::-webkit-scrollbar{display:none;}
+.t-chip{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;cursor:pointer;padding:9px 10px;border-radius:13px;background:#141720;border:1px solid rgba(255,255,255,.07);transition:all .18s;min-width:62px;}
+.t-chip.active{background:rgba(91,110,245,.15);border-color:rgba(91,110,245,.3);}
+.t-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#5b6ef5,#12c0d4);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;position:relative;}
+.t-pip{position:absolute;bottom:0;right:0;width:9px;height:9px;border-radius:50%;border:2px solid #141720;}
+.t-name{font-size:9px;font-weight:600;color:#eef0f7;text-align:center;white-space:nowrap;}
+.t-sub{font-size:8px;color:#8c93b0;}
+.chat-box{background:#141720;border:1px solid rgba(255,255,255,.07);border-radius:16px;display:flex;flex-direction:column;height:320px;}
+.chat-hdr{padding:11px 13px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:9px;flex-shrink:0;}
+.chat-msgs{flex:1;overflow-y:auto;padding:11px;display:flex;flex-direction:column;gap:9px;}
+.chat-msgs::-webkit-scrollbar{display:none;}
+.chat-footer{padding:9px 11px;border-top:1px solid rgba(255,255,255,.07);display:flex;gap:7px;flex-shrink:0;}
+.chat-inp{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:8px 10px;color:#eef0f7;font-size:11px;font-family:'Inter',sans-serif;outline:none;}
+.chat-inp:focus{border-color:#5b6ef5;}
+.chat-inp::placeholder{color:#4f5570;}
+.msg{max-width:72%;padding:8px 11px;font-size:11px;line-height:1.5;}
+.msg-me{background:linear-gradient(135deg,#5b6ef5,#7c5ce8);border-radius:13px 13px 3px 13px;align-self:flex-end;}
+.msg-them{background:#1a1e2a;border:1px solid rgba(255,255,255,.07);border-radius:13px 13px 13px 3px;align-self:flex-start;}
+.msg-sender{font-size:9px;color:#8c93b0;font-weight:600;margin-bottom:2px;}
+.msg-time{font-size:9px;opacity:.5;text-align:right;margin-top:2px;}
+
+/* ─── MATERIALS ─── */
+.mat-row{display:flex;align-items:center;gap:11px;padding:11px 13px;background:#141720;border:1px solid rgba(255,255,255,.07);border-radius:13px;margin-bottom:9px;transition:background .15s;}
+.mat-row:active{background:#1a1e2a;}
+
+.hidden{display:none!important;}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+  <div class="page-label">Sri Saradha EM High School · Student Portal</div>
+
+  <!-- ═══════════════ PHONE ═══════════════ -->
+  <div class="phone">
+    <div class="phone-right"></div>
+    <div class="screen">
+
+      <!-- STATUS BAR -->
+      <div class="status-bar">
+        <span>9:41</span>
+        <div class="dynamic-island"></div>
+        <div class="sb-right">
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><rect x="0" y="3" width="3" height="7" rx=".5" fill="#eef0f7"/><rect x="4" y="2" width="3" height="8" rx=".5" fill="#eef0f7"/><rect x="8" y="0" width="3" height="10" rx=".5" fill="#eef0f7"/><rect x="12" y="0" width="2" height="10" rx=".5" fill="rgba(255,255,255,.3)"/></svg>
+          <svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M6 2C7.8 2 9.4 2.8 10.5 4L12 2.5C10.5 1 8.4 0 6 0C3.6 0 1.5 1 0 2.5L1.5 4C2.6 2.8 4.2 2 6 2Z" fill="#eef0f7"/><path d="M6 5C7 5 7.9 5.4 8.5 6L10 4.5C9 3.6 7.6 3 6 3C4.4 3 3 3.6 2 4.5L3.5 6C4.1 5.4 5 5 6 5Z" fill="#eef0f7"/><circle cx="6" cy="9" r="1.5" fill="#eef0f7"/></svg>
+          <svg width="22" height="10" viewBox="0 0 22 10" fill="none"><rect x=".5" y="1.5" width="17" height="7" rx="1.5" stroke="#eef0f7" stroke-width="1"/><rect x="1.5" y="2.5" width="12" height="5" rx="1" fill="#eef0f7"/><path d="M19 3.5V6.5C20 6.1 21 5.5 21 5S20 3.9 19 3.5Z" fill="#eef0f7"/></svg>
+        </div>
+      </div>
+
+      <!-- LOGIN SCREEN -->
+      <div id="login-screen" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;background:#07080f;">
+        <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#5b6ef5,#7c5ce8);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:16px;box-shadow:0 6px 20px rgba(91,110,245,.5);">S</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;color:#eef0f7;text-align:center;margin-bottom:4px;">Sri Saradha EM<br/>High School</div>
+        <div style="font-size:11px;color:#8c93b0;margin-bottom:24px;">Student Portal</div>
+        <div style="width:100%;max-width:260px;">
+          <div style="font-size:10px;font-weight:600;color:#8c93b0;margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase;">Student ID</div>
+          <input id="l-id" type="text" placeholder="STU-2024-XXXX" style="width:100%;padding:11px 13px;border-radius:11px;background:#141720;border:1px solid rgba(255,255,255,.1);color:#eef0f7;font-size:13px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;"/>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <div style="font-size:10px;font-weight:600;color:#8c93b0;letter-spacing:.04em;text-transform:uppercase;">Password</div>
+            <a style="font-size:10px;color:#5b6ef5;text-decoration:none;">Forgot?</a>
+          </div>
+          <input id="l-pw" type="password" placeholder="Enter password" style="width:100%;padding:11px 13px;border-radius:11px;background:#141720;border:1px solid rgba(255,255,255,.1);color:#eef0f7;font-size:13px;font-family:'Inter',sans-serif;outline:none;margin-bottom:4px;"/>
+          <div id="l-err" style="font-size:11px;color:#f0504b;text-align:center;margin-bottom:8px;min-height:16px;"></div>
+          <button id="l-btn" class="btn-p" style="width:100%;padding:12px;font-size:14px;">Sign In →</button>
+          <div style="font-size:10px;color:#4f5570;text-align:center;margin-top:10px;">Demo: any ID + 4+ chars</div>
+        </div>
+      </div>
+
+      <!-- APP SHELL -->
+      <div id="app-shell" style="display:none;flex:1;flex-direction:column;overflow:hidden;position:relative;">
+
+        <!-- APP HEADER -->
+        <div class="app-header">
+          <div class="ahl">
+            <div class="logo-badge">S</div>
+            <div>
+              <div class="school-name">Sri Saradha HS</div>
+              <div class="school-sub">Student Portal</div>
+            </div>
+          </div>
+          <div class="ahr">
+            <div class="icon-btn" id="notif-btn">🔔<div class="red-pip" id="notif-pip"></div></div>
+            <div class="icon-btn" id="signout-btn" title="Sign out" style="font-size:11px;font-weight:600;color:#8c93b0;">←</div>
+          </div>
+        </div>
+
+        <!-- SCROLL AREA -->
+        <div class="scroll-area" id="scroll-area">
+
+          <!-- ── DASHBOARD ── -->
+          <div class="page active" id="pg-dashboard">
+            <div class="welcome-card">
+              <div><div class="wname">Hello, Subu! 👋</div><div class="wsub">Class 10-A · Roll 42 · STU-2024-0892</div></div>
+              <div class="av">S</div>
+            </div>
+            <div class="stat-grid">
+              <div class="stat-tile" style="background:rgba(18,199,116,.09);border-color:rgba(18,199,116,.2)"><div class="sv" style="color:#18c774">88%</div><div class="sl">Attendance</div><div class="sd">This month</div></div>
+              <div class="stat-tile" style="background:rgba(244,167,43,.09);border-color:rgba(244,167,43,.2)"><div class="sv" style="color:#f4a72b">3</div><div class="sl">Pending HW</div><div class="sd">Assignments due</div></div>
+              <div class="stat-tile" style="background:rgba(240,80,75,.09);border-color:rgba(240,80,75,.2)"><div class="sv" style="color:#f0504b">₹9.2k</div><div class="sl">Fee Due</div><div class="sd">Term 2 – 2025</div></div>
+              <div class="stat-tile" style="background:rgba(91,110,245,.09);border-color:rgba(91,110,245,.2)"><div class="sv" style="color:#5b6ef5">84%</div><div class="sl">Avg Score</div><div class="sd">All subjects</div></div>
+            </div>
+            <div class="card"><div class="sec-head">📝 Upcoming Exams <span>Next 7 days</span></div><div id="d-exams"></div></div>
+            <div class="card"><div class="sec-head">📢 Announcements</div><div id="d-notices"></div></div>
+            <div class="card"><div class="sec-head">📚 Recent Homework</div><div id="d-hw"></div></div>
+          </div>
+
+          <!-- ── ATTENDANCE ── -->
+          <div class="page" id="pg-attendance">
+            <div class="stat-grid" style="grid-template-columns:1fr 1fr 1fr;gap:7px;">
+              <div class="stat-tile" style="background:rgba(18,199,116,.09);border-color:rgba(18,199,116,.2)"><div class="sv" style="color:#18c774">15</div><div class="sl">Present</div></div>
+              <div class="stat-tile" style="background:rgba(240,80,75,.09);border-color:rgba(240,80,75,.2)"><div class="sv" style="color:#f0504b">2</div><div class="sl">Absent</div></div>
+              <div class="stat-tile" style="background:rgba(244,167,43,.09);border-color:rgba(244,167,43,.2)"><div class="sv" style="color:#f4a72b">1</div><div class="sl">Leave</div></div>
+            </div>
+            <div class="card">
+              <div class="sec-head">May 2025 <span>88% · 15/17 days</span></div>
+              <div class="prog" style="margin-bottom:8px"><div class="prog-f" style="width:88%;background:linear-gradient(90deg,#18c774,#12c0d4)"></div></div>
+              <div class="att-grid" id="att-cal" style="margin-top:10px;"></div>
+              <div style="display:flex;gap:12px;margin-top:10px;font-size:10px;color:#8c93b0"><span>🟢 Present</span><span>🔴 Absent</span><span>🟡 Leave</span></div>
+            </div>
+          </div>
+
+          <!-- ── HOMEWORK ── -->
+          <div class="page" id="pg-homework">
+            <div class="tabs" id="hw-tabs">
+              <button class="tab-btn active" data-hw="All">All</button>
+              <button class="tab-btn" data-hw="Pending">Pending</button>
+              <button class="tab-btn" data-hw="Submitted">Submitted</button>
+            </div>
+            <div id="hw-list"></div>
+          </div>
+
+          <!-- ── EXAMS ── -->
+          <div class="page" id="pg-exams">
+            <div class="card" style="background:rgba(91,110,245,.07);border-color:rgba(91,110,245,.2);margin-bottom:11px">
+              <div style="display:flex;align-items:center;gap:11px"><div style="font-size:26px">📝</div><div><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:#eef0f7">Unit Test – May 2025</div><div style="font-size:10px;color:#8c93b0">5 subjects · Starting 20 May</div></div></div>
+            </div>
+            <div id="exams-list"></div>
+          </div>
+
+          <!-- ── RESULTS ── -->
+          <div class="page" id="pg-results">
+            <div class="stat-grid" style="grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:11px">
+              <div class="stat-tile" style="background:rgba(91,110,245,.09);border-color:rgba(91,110,245,.2);text-align:center"><div class="sv" style="color:#5b6ef5">84%</div><div class="sl">Average</div></div>
+              <div class="stat-tile" style="background:rgba(18,199,116,.09);border-color:rgba(18,199,116,.2);text-align:center"><div class="sv" style="color:#18c774;font-size:12px;margin-top:4px">Comp.</div><div class="sl">Best</div></div>
+              <div class="stat-tile" style="background:rgba(244,167,43,.09);border-color:rgba(244,167,43,.2);text-align:center"><div class="sv" style="color:#f4a72b">A</div><div class="sl">Grade</div></div>
+            </div>
+            <div class="card"><div class="sec-head">Subject Performance</div><div id="res-bars"></div></div>
+            <div style="display:flex;gap:8px;margin-top:4px">
+              <button class="btn-p" style="flex:1;padding:10px;font-size:11px">📥 Report Card</button>
+              <button class="btn-s" style="flex:1;padding:10px;text-align:center;font-size:11px">📊 Analytics</button>
+            </div>
+          </div>
+
+          <!-- ── FEES ── -->
+          <div class="page" id="pg-fees">
+            <div class="fee-alert">
+              <div><div style="color:#f0504b;font-weight:700;font-size:14px">⚠️ ₹9,200 Due</div><div style="font-size:10px;color:#8c93b0">Term 2 – 2025 · Due 31 May</div></div>
+              <button class="btn-p" style="background:linear-gradient(135deg,#ef4444,#f97316);font-size:11px;padding:8px 11px">Pay →</button>
+            </div>
+            <div class="card"><div class="sec-head">Fee Breakup</div><div id="fee-struct"></div></div>
+            <div class="card"><div class="sec-head">Payment History</div><div id="fee-hist"></div></div>
+            <div class="card">
+              <div class="sec-head">Pay via</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px">
+                <button class="btn-s" style="padding:12px 5px;text-align:center;border-radius:12px"><div style="font-size:18px;margin-bottom:3px">💳</div><div style="font-size:9px">Card</div></button>
+                <button class="btn-s" style="padding:12px 5px;text-align:center;border-radius:12px"><div style="font-size:18px;margin-bottom:3px">📱</div><div style="font-size:9px">UPI</div></button>
+                <button class="btn-s" style="padding:12px 5px;text-align:center;border-radius:12px"><div style="font-size:18px;margin-bottom:3px">🏦</div><div style="font-size:9px">Net Banking</div></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── TIMETABLE ── -->
+          <div class="page" id="pg-timetable">
+            <div class="card" style="padding:12px 8px">
+              <div class="sec-head" style="padding:0 5px">Weekly Timetable</div>
+              <div class="tt-wrap"><table class="tt-table" id="tt-table"></table></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:2px" id="tt-legend"></div>
+          </div>
+
+          <!-- ── MATERIALS ── -->
+          <div class="page" id="pg-materials">
+            <div id="mat-list"></div>
+          </div>
+
+          <!-- ── CHAT ── -->
+          <div class="page" id="pg-chat">
+            <div class="teacher-list" id="teacher-list"></div>
+            <div class="chat-box">
+              <div class="chat-hdr">
+                <div class="t-av" style="width:32px;height:32px;font-size:12px">K</div>
+                <div><div style="font-weight:600;font-size:12px;color:#eef0f7">Mrs. Kapoor</div><div style="font-size:9px;color:#18c774">● Online</div></div>
+              </div>
+              <div class="chat-msgs" id="chat-msgs"></div>
+              <div class="chat-footer">
+                <input class="chat-inp" id="chat-inp" placeholder="Type a message…"/>
+                <button class="btn-p" id="chat-send" style="padding:7px 11px;font-size:11px">Send</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── NOTICES ── -->
+          <div class="page" id="pg-notices">
+            <div id="notices-list"></div>
+          </div>
+
+          <!-- ── PROFILE ── -->
+          <div class="page" id="pg-profile">
+            <div class="profile-hero">
+              <div class="pav-lg">S</div>
+              <div class="pname">Subu Medisetti</div>
+              <div class="psub">10th Grade – Section A · Roll 42</div>
+              <div class="ptags">
+                <span class="ptag">🎂 12 Mar 2009</span>
+                <span class="ptag">🩸 B+</span>
+                <span class="ptag">📅 Apr 2019</span>
+              </div>
+            </div>
+            <div class="tabs">
+              <button class="tab-btn active" data-ptab="pt-details">Details</button>
+              <button class="tab-btn" data-ptab="pt-parent">Parent</button>
+              <button class="tab-btn" data-ptab="pt-idcard">ID Card</button>
+            </div>
+            <div id="pt-details" class="detail-grid">
+              <div class="dtile"><div class="dlbl">🪪 Student ID</div><div class="dval" style="font-size:10px">STU-2024-0892</div></div>
+              <div class="dtile"><div class="dlbl">🎓 Class</div><div class="dval">10th – A</div></div>
+              <div class="dtile"><div class="dlbl">🎂 Date of Birth</div><div class="dval">12 Mar 2009</div></div>
+              <div class="dtile"><div class="dlbl">🩸 Blood Group</div><div class="dval">B+</div></div>
+              <div class="dtile"><div class="dlbl">📧 Email</div><div class="dval" style="font-size:10px">subu@school.edu</div></div>
+              <div class="dtile"><div class="dlbl">📱 Phone</div><div class="dval" style="font-size:10px">+91 98765 43210</div></div>
+              <div class="dtile" style="grid-column:1/-1"><div class="dlbl">📍 Address</div><div class="dval">42, Sunrise Colony, Hyderabad</div></div>
+            </div>
+            <div id="pt-parent" class="detail-grid hidden">
+              <div class="dtile"><div class="dlbl">👨 Guardian</div><div class="dval">Mr. Ramesh Medisetti</div></div>
+              <div class="dtile"><div class="dlbl">📱 Phone</div><div class="dval" style="font-size:10px">+91 99887 66554</div></div>
+              <div class="dtile"><div class="dlbl">👤 Relation</div><div class="dval">Father</div></div>
+              <div class="dtile"><div class="dlbl">💼 Occupation</div><div class="dval">Business</div></div>
+              <div class="dtile" style="grid-column:1/-1"><div class="dlbl">📧 Email</div><div class="dval">ramesh.m@gmail.com</div></div>
+            </div>
+            <div id="pt-idcard" class="hidden">
+              <div class="id-card">
+                <div style="text-align:center;margin-bottom:14px"><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:#eef0f7">Sri Saradha EM High School</div><div style="font-size:9px;color:#8c93b0">Student Identity Card</div></div>
+                <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
+                  <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#5b6ef5,#e85ca0);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#fff;flex-shrink:0">S</div>
+                  <div><div style="font-weight:700;font-size:13px;color:#eef0f7">Subu Medisetti</div><div style="font-size:10px;color:#8c93b0">10th Grade – Section A</div><div style="font-size:10px;color:#8c93b0">Roll: 42</div><div style="font-size:10px;color:#5b6ef5">STU-2024-0892</div></div>
+                </div>
+                <div id="big-qr" class="qr-grid"></div>
+                <div style="text-align:center;font-size:9px;color:#8c93b0;margin-top:10px">Scan to verify · Valid 2024–25</div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /scroll-area -->
+
+        <!-- BOTTOM NAV -->
+        <div class="bottom-nav" id="bottom-nav">
+          <button class="bni active" data-page="dashboard"><div class="bni-ico">⊞</div><div class="bni-lbl">Home</div></button>
+          <button class="bni" data-page="attendance"><div class="bni-ico">◎</div><div class="bni-lbl">Attend.</div></button>
+          <button class="bni" data-page="homework"><div class="bni-ico">✎</div><div class="bni-lbl">HW</div><div class="bni-badge">3</div></button>
+          <button class="bni" data-page="results"><div class="bni-ico">◇</div><div class="bni-lbl">Results</div></button>
+          <button class="bni" id="more-btn"><div class="bni-ico">⋯</div><div class="bni-lbl">More</div></button>
+        </div>
+
+        <!-- MORE OVERLAY + DRAWER -->
+        <div class="more-overlay" id="more-overlay"></div>
+        <div class="more-drawer" id="more-drawer">
+          <div class="more-handle"></div>
+          <div class="more-grid">
+            <div class="more-item" data-page="profile"><div class="more-item-ico">◉</div><div class="more-item-lbl">Profile</div></div>
+            <div class="more-item" data-page="exams"><div class="more-item-ico">📝</div><div class="more-item-lbl">Exams</div></div>
+            <div class="more-item" data-page="fees"><div class="more-item-ico">💰</div><div class="more-item-lbl">Fees</div></div>
+            <div class="more-item" data-page="timetable"><div class="more-item-ico">🗓</div><div class="more-item-lbl">Timetable</div></div>
+            <div class="more-item" data-page="materials"><div class="more-item-ico">📄</div><div class="more-item-lbl">Materials</div></div>
+            <div class="more-item" data-page="chat"><div class="more-item-ico">💬</div><div class="more-item-lbl">Messages</div></div>
+            <div class="more-item" data-page="notices"><div class="more-item-ico">📢</div><div class="more-item-lbl">Notices</div></div>
+          </div>
+        </div>
+
+      </div><!-- /app-shell -->
+
+    </div><!-- /screen -->
+  </div><!-- /phone -->
+
+  <div style="font-size:11px;color:#9a9590;text-align:center;">Tap any section to navigate · All features work</div>
+</div>
+
+<script>
+/* ── DATA ── */
+const SC={Mathematics:"#5b6ef5",Science:"#18c774",English:"#f4a72b",Hindi:"#e85ca0","Social Studies":"#12c0d4",Computer:"#7c5ce8","Physical Ed.":"#f97316",PE:"#f97316",Art:"#12c0d4"};
+const ATT=[{d:"2025-05-01",s:"P"},{d:"2025-05-02",s:"P"},{d:"2025-05-05",s:"A"},{d:"2025-05-06",s:"P"},{d:"2025-05-07",s:"P"},{d:"2025-05-08",s:"L"},{d:"2025-05-09",s:"P"},{d:"2025-05-12",s:"P"},{d:"2025-05-13",s:"P"},{d:"2025-05-14",s:"P"},{d:"2025-05-15",s:"A"},{d:"2025-05-16",s:"P"},{d:"2025-05-19",s:"P"},{d:"2025-05-20",s:"P"},{d:"2025-05-21",s:"P"},{d:"2025-05-22",s:"P"},{d:"2025-05-23",s:"P"}];
+const HW=[{id:1,subject:"Mathematics",title:"Quadratic Equations – Ex 4.3",due:"2025-05-07",status:"Submitted",teacher:"Mrs. Kapoor"},{id:2,subject:"Science",title:"Chapter 5 – Diagram & Notes",due:"2025-05-08",status:"Pending",teacher:"Mr. Verma"},{id:3,subject:"English",title:"Essay: My Future Goals",due:"2025-05-09",status:"Pending",teacher:"Ms. Priya"},{id:4,subject:"Hindi",title:"पाठ 7 – प्रश्न उत्तर",due:"2025-05-10",status:"Submitted",teacher:"Mr. Gupta"},{id:5,subject:"Social Studies",title:"Map Work – Chapter 3",due:"2025-05-12",status:"Pending",teacher:"Mrs. Singh"},{id:6,subject:"Computer",title:"Python Basics – Lab Sheet",due:"2025-05-06",status:"Submitted",teacher:"Mr. Iyer"}];
+const EXAMS=[{subject:"Mathematics",date:"2025-05-20",time:"9:00 AM",room:"Room 201"},{subject:"Science",date:"2025-05-21",time:"9:00 AM",room:"Room 203"},{subject:"English",date:"2025-05-22",time:"11:00 AM",room:"Room 205"},{subject:"Hindi",date:"2025-05-23",time:"9:00 AM",room:"Room 201"},{subject:"Social Studies",date:"2025-05-24",time:"11:00 AM",room:"Room 207"}];
+const RES=[{subject:"Mathematics",ut1:38,ut2:42,mid:85,total:165,max:200,grade:"A+"},{subject:"Science",ut1:35,ut2:40,mid:78,total:153,max:200,grade:"A"},{subject:"English",ut1:40,ut2:43,mid:88,total:171,max:200,grade:"A+"},{subject:"Hindi",ut1:36,ut2:38,mid:80,total:154,max:200,grade:"A"},{subject:"Social Studies",ut1:33,ut2:37,mid:75,total:145,max:200,grade:"B+"},{subject:"Computer",ut1:45,ut2:47,mid:92,total:184,max:200,grade:"A+"}];
+const FEES_D=[{term:"Term 1 – 2024",amount:8500,paid:true,date:"2024-04-10"},{term:"Term 2 – 2024",amount:8500,paid:true,date:"2024-10-08"},{term:"Term 1 – 2025",amount:9200,paid:true,date:"2025-04-05"},{term:"Term 2 – 2025",amount:9200,paid:false,date:null}];
+const NOTICES_D=[{title:"Annual Sports Day",body:"Scheduled 25th May 2025. All students must participate.",time:"2 hrs ago",icon:"🏆",color:"#f4a72b"},{title:"Holiday Notice",body:"School closed 19th May (Buddha Purnima). Resumes 20th May.",time:"1 day ago",icon:"🎉",color:"#18c774"},{title:"Parent-Teacher Meeting",body:"PTM on 28th May 2025, 9 AM – 1 PM.",time:"2 days ago",icon:"📢",color:"#5b6ef5"},{title:"Fee Reminder",body:"Term 2 fees due by 31st May. Pay online to avoid late charges.",time:"3 days ago",icon:"💰",color:"#f0504b"}];
+const TT={Mon:["Mathematics","Science","English","Lunch","Hindi","Computer","PE"],Tue:["Science","Mathematics","Social Studies","Lunch","English","Hindi","Art"],Wed:["English","Hindi","Mathematics","Lunch","Science","Social Studies","Computer"],Thu:["Hindi","English","Science","Lunch","Mathematics","PE","Social Studies"],Fri:["Computer","Mathematics","Hindi","Lunch","Science","English","Social Studies"]};
+const MATS=[{subject:"Mathematics",type:"PDF",title:"Chapter 4 – Quadratic Equations Notes",size:"2.4 MB"},{subject:"Science",type:"VIDEO",title:"Photosynthesis – Animated",size:"YouTube"},{subject:"English",type:"PDF",title:"Grammar Reference – Class 10",size:"1.8 MB"},{subject:"Computer",type:"PDF",title:"Python Basics – Lab Manual",size:"3.1 MB"},{subject:"Social Studies",type:"PDF",title:"India – Physical Geography Maps",size:"4.2 MB"},{subject:"Mathematics",type:"VIDEO",title:"Trigonometry Intro – Video Lecture",size:"YouTube"}];
+let MSGS=[{from:"Mrs. Kapoor",mine:false,msg:"Subu, your Chapter 4 performance was excellent! Keep it up 👍",time:"10:30 AM"},{from:"Me",mine:true,msg:"Thank you Ma'am! I'll work harder for the next unit test.",time:"10:45 AM"},{from:"Mr. Verma",mine:false,msg:"Please submit the diagram assignment by tomorrow.",time:"11:00 AM"},{from:"Me",mine:true,msg:"Sure sir, I'll submit it today.",time:"11:05 AM"}];
+
+/* ── HELPERS ── */
+const sc=s=>SC[s]||"#5b6ef5";
+const ha=(h,a)=>h+Math.round(a*255).toString(16).padStart(2,"0");
+const fd=d=>new Date(d).toLocaleDateString("en-IN",{day:"numeric",month:"short"});
+const $=id=>document.getElementById(id);
+
+/* ── QR ── */
+function buildQR(id,cols,seed){
+  const el=$(id);if(!el)return;
+  el.innerHTML="";el.style.gridTemplateColumns=`repeat(${cols},7px)`;
+  for(let i=0;i<cols*cols;i++){
+    const c=document.createElement("div");c.className="qr-cell";
+    c.style.background=(seed*i*31+seed^i*7)%11>4?"#1e1b4b":"transparent";
+    el.appendChild(c);
+  }
+}
+
+/* ── RENDERERS ── */
+function renderDashboard(){
+  let eh="";
+  EXAMS.slice(0,3).forEach((e,i)=>{
+    const c=sc(e.subject);
+    eh+=`<div class="ri"><div class="ri-ico" style="background:${ha(c,.13)};color:${c}">${e.subject.substring(0,3)}</div><div class="ri-main"><div class="ri-t">${e.subject}</div><div class="ri-s">${fd(e.date)} · ${e.time}</div></div><span class="rbadge" style="background:${ha(c,.14)};color:${c}">UT</span></div>`;
+  });
+  $("d-exams").innerHTML=eh;
+  let nh="";
+  NOTICES_D.slice(0,3).forEach(n=>{
+    nh+=`<div class="ri"><div style="width:34px;height:34px;border-radius:9px;background:${ha(n.color,.13)};display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">${n.icon}</div><div style="flex:1;min-width:0"><div class="ri-t">${n.title}</div><div class="ri-s" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${n.body.substring(0,42)}…</div></div></div>`;
+  });
+  $("d-notices").innerHTML=nh;
+  let hwh="";
+  HW.slice(0,3).forEach(h=>{
+    const p=h.status==="Pending";const c=p?"#f4a72b":"#18c774";
+    hwh+=`<div class="ri"><div class="ri-ico" style="background:${ha(sc(h.subject),.13)};color:${sc(h.subject)}">${h.subject.substring(0,3)}</div><div style="flex:1;min-width:0"><div class="ri-t">${h.title.substring(0,28)}…</div><div class="ri-s">${h.subject} · Due ${fd(h.due)}</div></div><span class="rbadge" style="background:${ha(c,.14)};color:${c}">${p?"⏱":"✓"}</span></div>`;
+  });
+  $("d-hw").innerHTML=hwh;
+}
+
+function renderAttendance(){
+  let h="";
+  ATT.forEach(a=>{
+    const bg=a.s==="P"?"rgba(18,199,116,.14)":a.s==="A"?"rgba(240,80,75,.14)":"rgba(244,167,43,.14)";
+    const br=a.s==="P"?"rgba(18,199,116,.3)":a.s==="A"?"rgba(240,80,75,.3)":"rgba(244,167,43,.3)";
+    const cl=a.s==="P"?"#18c774":a.s==="A"?"#f0504b":"#f4a72b";
+    h+=`<div style="width:36px;height:40px;border-radius:9px;background:${bg};border:1px solid ${br};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><div style="font-size:10px;font-weight:700;color:${cl}">${a.s}</div><div style="font-size:8px;color:#4f5570">${new Date(a.d).getDate()}</div></div>`;
+  });
+  $("att-cal").innerHTML=h;
+}
+
+function renderHomework(filter){
+  document.querySelectorAll("#hw-tabs .tab-btn").forEach(b=>b.classList.toggle("active",b.dataset.hw===filter));
+  const data=filter==="All"?HW:HW.filter(h=>h.status===filter);
+  let h="";
+  data.forEach(hw=>{
+    const p=hw.status==="Pending";const c=sc(hw.subject);
+    h+=`<div class="card-sm" style="border-left:3px solid ${c};margin-bottom:9px"><div style="display:flex;align-items:center;gap:9px"><div style="width:38px;height:38px;border-radius:10px;background:${ha(c,.13)};color:${c};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">${hw.subject.substring(0,3)}</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;color:#eef0f7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${hw.title}</div><div style="font-size:10px;color:#8c93b0;margin-top:1px">${hw.subject} · ${hw.teacher}</div></div></div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px"><span style="font-size:9px;color:#4f5570">Due: ${fd(hw.due)}</span><div style="display:flex;gap:6px;align-items:center"><span class="rbadge" style="background:${p?"rgba(244,167,43,.14)":"rgba(18,199,116,.14)"};color:${p?"#f4a72b":"#18c774"}">${p?"⏱ Pending":"✓ Done"}</span>${p?`<button class="btn-p" style="padding:5px 9px;font-size:10px">Upload</button>`:""}</div></div></div>`;
+  });
+  $("hw-list").innerHTML=h;
+}
+
+function renderExams(){
+  let h="";
+  EXAMS.forEach(e=>{
+    const c=sc(e.subject);const dt=new Date(e.date);
+    h+=`<div class="card-sm" style="margin-bottom:9px"><div style="display:flex;align-items:center;gap:10px"><div style="width:44px;height:44px;border-radius:12px;background:${ha(c,.13)};border:1px solid ${ha(c,.22)};display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0"><div style="font-size:16px;font-weight:700;color:${c};line-height:1">${dt.getDate()}</div><div style="font-size:8px;color:#8c93b0">${dt.toLocaleString("en",{month:"short"})}</div></div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:#eef0f7">${e.subject}</div><div style="font-size:10px;color:#8c93b0;margin-top:2px">${e.time} · ${e.room}</div></div><span class="rbadge" style="background:${ha(c,.14)};color:${c}">UT</span></div></div>`;
+  });
+  $("exams-list").innerHTML=h;
+}
+
+function renderResults(){
+  let h="";
+  RES.forEach(r=>{
+    const pct=Math.round(r.total/r.max*100);const c=sc(r.subject);
+    h+=`<div style="margin-bottom:11px"><div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:11px"><span style="color:#eef0f7;font-weight:500">${r.subject}</span><span style="display:flex;gap:7px;align-items:center;color:#8c93b0"><span>${r.total}/${r.max}</span><span class="rbadge" style="background:${ha(c,.14)};color:${c}">${r.grade}</span></span></div><div class="prog"><div class="prog-f" style="width:${pct}%;background:${c}"></div></div><div style="font-size:9px;color:#4f5570;margin-top:3px">UT1: ${r.ut1} · UT2: ${r.ut2} · Mid: ${r.mid}</div></div>`;
+  });
+  $("res-bars").innerHTML=h;
+}
+
+function renderFees(){
+  const struct=[["Tuition","₹6,000"],["Transport","₹1,500"],["Lab","₹800"],["Sports","₹500"],["Misc.","₹400"]];
+  let sh="";
+  struct.forEach(([k,v])=>{sh+=`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#8c93b0">${k}</span><span style="font-weight:600;color:#eef0f7">${v}</span></div>`;});
+  sh+=`<div style="display:flex;justify-content:space-between;padding:10px 0;font-size:14px;font-weight:700;color:#5b6ef5"><span>Total / Term</span><span>₹9,200</span></div>`;
+  $("fee-struct").innerHTML=sh;
+  let fh="";
+  FEES_D.forEach(f=>{
+    fh+=`<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04)"><div style="width:34px;height:34px;border-radius:9px;background:${f.paid?"rgba(18,199,116,.14)":"rgba(240,80,75,.14)"};display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">${f.paid?"✅":"⏳"}</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#eef0f7">${f.term}</div><div style="font-size:10px;color:#8c93b0">${f.paid?"Paid "+f.date:"Payment Pending"}</div></div><div style="text-align:right"><div style="font-weight:700;font-size:12px;color:#eef0f7">₹${f.amount.toLocaleString()}</div>${f.paid?`<div style="font-size:9px;color:#5b6ef5;cursor:pointer;margin-top:2px">📥 Receipt</div>`:""}</div></div>`;
+  });
+  $("fee-hist").innerHTML=fh;
+}
+
+function renderTimetable(){
+  const periods=["Day","1st","2nd","3rd","🍱","4th","5th","6th"];
+  let h=`<thead><tr>${periods.map(p=>`<th>${p}</th>`).join("")}</tr></thead><tbody>`;
+  Object.entries(TT).forEach(([day,subs])=>{
+    h+=`<tr><td>${day}</td>${subs.map(s=>{const isL=s==="Lunch";const c=isL?"var(--dim)":sc(s);return`<td><div class="tt-pill" style="background:${isL?"rgba(255,255,255,.04)":ha(sc(s),.13)};color:${c};border:1px solid ${isL?"transparent":ha(sc(s),.2)}">${isL?"🍱":s.substring(0,3)}</div></td>`;}).join("")}</tr>`;
+  });
+  h+="</tbody>";
+  $("tt-table").innerHTML=h;
+  let leg="";
+  Object.entries(SC).slice(0,6).forEach(([s,c])=>{
+    leg+=`<span style="padding:3px 8px;border-radius:6px;font-size:9px;font-weight:500;background:${ha(c,.13)};color:${c};border:1px solid ${ha(c,.2)}">${s}</span>`;
+  });
+  $("tt-legend").innerHTML=leg;
+}
+
+function renderMaterials(){
+  let h="";
+  MATS.forEach(m=>{
+    const p=m.type==="PDF";
+    h+=`<div class="mat-row"><div style="width:40px;height:40px;border-radius:11px;background:${p?"rgba(240,80,75,.14)":"rgba(18,199,116,.12)"};display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">${p?"📄":"▶️"}</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;color:#eef0f7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${m.title}</div><div style="font-size:10px;color:#8c93b0;margin-top:2px">${m.subject} · ${m.size}</div></div><button class="btn-s" style="padding:6px 9px;font-size:10px;flex-shrink:0">${p?"📥":"🔗"}</button></div>`;
+  });
+  $("mat-list").innerHTML=h;
+}
+
+function renderTeachers(){
+  const teachers=[{name:"Mrs. Kapoor",sub:"Maths",online:true,init:"K"},{name:"Mr. Verma",sub:"Science",online:false,init:"V"},{name:"Ms. Priya",sub:"English",online:true,init:"P"},{name:"Mr. Gupta",sub:"Hindi",online:false,init:"G"}];
+  let h="";
+  teachers.forEach((t,i)=>{
+    h+=`<div class="t-chip${i===0?" active":""}" data-t="${t.name}"><div class="t-av">${t.init}<div class="t-pip" style="background:${t.online?"#18c774":"#4f5570"}"></div></div><div class="t-name">${t.name.split(" ")[1]||t.name}</div><div class="t-sub">${t.sub}</div></div>`;
+  });
+  $("teacher-list").innerHTML=h;
+}
+
+function renderMessages(){
+  let h="";
+  MSGS.forEach(m=>{
+    h+=`<div style="display:flex;justify-content:${m.mine?"flex-end":"flex-start"}"><div class="msg ${m.mine?"msg-me":"msg-them"}">${!m.mine?`<div class="msg-sender">${m.from}</div>`:""}<div>${m.msg}</div><div class="msg-time">${m.time}</div></div></div>`;
+  });
+  const el=$("chat-msgs");
+  el.innerHTML=h;
+  el.scrollTop=el.scrollHeight;
+}
+
+function renderNotices(){
+  let h="";
+  NOTICES_D.forEach(n=>{
+    h+=`<div class="notice-item" style="background:${ha(n.color,.05)};border-color:${ha(n.color,.18)};border-left-color:${n.color}"><div style="width:40px;height:40px;border-radius:11px;background:${ha(n.color,.14)};display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">${n.icon}</div><div><div style="font-weight:700;font-size:13px;color:#eef0f7;margin-bottom:3px">${n.title}</div><div style="font-size:11px;color:#8c93b0;line-height:1.55">${n.body}</div><div style="font-size:10px;color:#4f5570;margin-top:6px">${n.time}</div></div></div>`;
+  });
+  $("notices-list").innerHTML=h;
+}
+
+function renderAll(){
+  renderDashboard();renderAttendance();renderHomework("All");
+  renderExams();renderResults();renderFees();renderTimetable();
+  renderMaterials();renderTeachers();renderMessages();renderNotices();
+  buildQR("big-qr",9,892);
+}
+
+/* ── NAVIGATION ── */
+const PM={dashboard:"pg-dashboard",attendance:"pg-attendance",homework:"pg-homework",exams:"pg-exams",results:"pg-results",fees:"pg-fees",timetable:"pg-timetable",materials:"pg-materials",chat:"pg-chat",notices:"pg-notices",profile:"pg-profile"};
+
+function navigate(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const pg=$(PM[id]);if(pg){pg.classList.add("active");void pg.offsetWidth;}
+  document.querySelectorAll(".bni[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+  $("scroll-area").scrollTop=0;
+  closeMore();
+  if(id==="notices"){$("notif-pip").style.display="none";}
+}
+
+/* ── MORE ── */
+function openMore(){$("more-overlay").style.display="block";$("more-drawer").classList.add("open");}
+function closeMore(){$("more-overlay").style.display="none";$("more-drawer").classList.remove("open");}
+$("more-btn").addEventListener("click",openMore);
+$("more-overlay").addEventListener("click",closeMore);
+$("more-drawer").addEventListener("click",e=>{const item=e.target.closest(".more-item[data-page]");if(item)navigate(item.dataset.page);});
+
+/* ── BOTTOM NAV ── */
+$("bottom-nav").addEventListener("click",e=>{const btn=e.target.closest(".bni[data-page]");if(btn)navigate(btn.dataset.page);});
+
+/* ── PROFILE TABS ── */
+document.addEventListener("click",e=>{
+  if(e.target.dataset.ptab){
+    const t=e.target.dataset.ptab;
+    ["pt-details","pt-parent","pt-idcard"].forEach(id=>{$(id).classList.toggle("hidden",id!==t);});
+    document.querySelectorAll(".tab-btn[data-ptab]").forEach(b=>b.classList.toggle("active",b.dataset.ptab===t));
+  }
+  if(e.target.dataset.hw)renderHomework(e.target.dataset.hw);
+  if(e.target.dataset.t){
+    document.querySelectorAll(".t-chip").forEach(c=>c.classList.toggle("active",c.dataset.t===e.target.dataset.t||c.closest("[data-t]")?.dataset.t===e.target.closest("[data-t]")?.dataset.t));
+  }
+});
+
+/* ── NOTIFICATIONS ── */
+$("notif-btn").addEventListener("click",()=>{navigate("notices");document.querySelectorAll(".bni[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page==="notices"));});
+
+/* ── CHAT ── */
+$("chat-send").addEventListener("click",sendMsg);
+$("chat-inp").addEventListener("keydown",e=>e.key==="Enter"&&sendMsg());
+function sendMsg(){
+  const inp=$("chat-inp"),msg=inp.value.trim();
+  if(!msg)return;
+  MSGS.push({from:"Me",mine:true,msg,time:new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})});
+  inp.value="";renderMessages();
+}
+
+/* ── LOGIN ── */
+$("l-btn").addEventListener("click",doLogin);
+$("l-pw").addEventListener("keydown",e=>e.key==="Enter"&&doLogin());
+function doLogin(){
+  const id=$("l-id").value.trim(),pw=$("l-pw").value;
+  const err=$("l-err");
+  if(!id||!pw){err.textContent="Please fill all fields.";return;}
+  if(pw.length<4){err.textContent="Invalid credentials.";return;}
+  const btn=$("l-btn");btn.textContent="Signing in…";btn.disabled=true;
+  setTimeout(()=>{
+    $("login-screen").style.display="none";
+    const app=$("app-shell");app.style.display="flex";
+    renderAll();
+  },900);
+}
+
+/* ── SIGN OUT ── */
+$("signout-btn").addEventListener("click",()=>{
+  $("app-shell").style.display="none";
+  $("login-screen").style.display="flex";
+  $("l-id").value="";$("l-pw").value="";$("l-err").textContent="";
+  $("l-btn").textContent="Sign In →";$("l-btn").disabled=false;
+  navigate("dashboard");
+});
+</script>
+</body>
+</html>
+
+
